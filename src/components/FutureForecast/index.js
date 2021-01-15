@@ -25,7 +25,8 @@ function FutureForecast() {
 
 			{!loading &&
 				weeklyData.map((day, i) => {
-					<FeatureForcastItem key={i} dayInfo={day} />;
+					<p>{day}</p>
+					// <FeatureForcastItem key={i} dayInfo={day} />;
 				})}
 		</div>
 	);

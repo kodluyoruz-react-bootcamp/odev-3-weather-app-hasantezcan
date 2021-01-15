@@ -340,11 +340,10 @@ const WithWheather = ({ children }) => {
 		// 	`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
 		// );
 
-
 		// console.log(data);
 
-		let todayInfo
-		let featureForcasts = [];
+		let todayInfo;
+		let featureForcasts;
 
 		if (data) {
 			todayInfo = {
@@ -352,14 +351,12 @@ const WithWheather = ({ children }) => {
 				description: data.current.weather[0].description,
 			};
 
-			data.daily.map((day, i) => {
-				featureForcasts.push({
-					data: day.dt,
-					maxTemp: day.temp.max,
-					minTemp: day.temp.min,
-					description: day.weather[0].description,
-				});
-			});
+			featureForcasts = data.daily.map((day, i) => ({
+				date: day.dt,
+				maxTemp: day.temp.max,
+				minTemp: day.temp.min,
+				description: day.weather[0].description,
+			}));
 
 			// console.log("Weekly", weekly);
 			// console.log("Today", today);
