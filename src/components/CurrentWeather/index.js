@@ -1,12 +1,8 @@
-import { useContext, useEffect } from "react";
-
-import WheatherContext from "../../contexts/WheatherContex";
+import { useWheather } from "../../contexts/WheatherContex";
 
 function CurrentWeather() {
-	// useEffect(() => {
-
-	const { dailyData, setLocation } = useContext(WheatherContext);
-	console.log(dailyData, setLocation);
+	const { dailyData } = useWheather();
+	console.log("DAILY DATA in COMPONENTS", dailyData);
 
 	// setLocation({
 	// 	lat: 38.7829724,
@@ -29,8 +25,8 @@ function CurrentWeather() {
 					<div className="inner"></div>
 				</div>
 			</div>
-			<p className="temp">{dailyData.temp}</p>
-			<p className="conditions"></p>
+			{/* <p className="temp">{dailyData.temp}</p>
+			<p className="conditions">{dailyData.description}</p> */}
 		</div>
 	);
 }

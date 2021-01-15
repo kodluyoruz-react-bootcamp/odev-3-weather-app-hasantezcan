@@ -1,44 +1,32 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useWheather } from "../../contexts/WheatherContex";
+
+import FeatureForcastItem from "./FeatureForcastItem";
 
 function FutureForecast() {
+	const [loading, setLoading] = useState(true);
+	const { weeklyData } = useWheather();
+
+	useEffect(() => {
+		if (weeklyData == undefined) {
+			setLoading(true);
+			console.log("BULAMADI");
+		} else {
+			setLoading(false);
+			console.log("BULDU");
+		}
+	}, [weeklyData]);
+
+	console.log("WEEKLYDATA in COMPONENTS", weeklyData);
+
 	return (
 		<div id="future" className="wrapper">
-			<div className="container">
-				<h3 className="day">Mon</h3>
-				<div className="weatherIcon">
-					<div className="partlycloudy">
-						<div className="inner"></div>
-					</div>
-				</div>
-				<p className="conditions">Partly Cloudy</p>
-				<p className="tempRange">
-					<span className="high">64</span> | <span className="low">48</span>
-				</p>
-			</div>
-			<div className="container">
-				<h3 className="day">Tue</h3>
-				<div className="weatherIcon">
-					<div className="mostlycloudy">
-						<div className="inner"></div>
-					</div>
-				</div>
-				<p className="conditions">Mostly Cloudy</p>
-				<p className="tempRange">
-					<span className="high">57</span> | <span className="low">45</span>
-				</p>
-			</div>
-			<div className="container">
-				<h3 className="day">Wed</h3>
-				<div className="weatherIcon">
-					<div className="rain">
-						<div className="inner"></div>
-					</div>
-				</div>
-				<p className="conditions">Chance of Rain</p>
-				<p className="tempRange">
-					<span className="high">63</span> | <span className="low">59</span>
-				</p>
-			</div>
+			{loading && <div>Loading...</div>}
+
+			{!loading &&
+				weeklyData.map((day, i) => {
+					<FeatureForcastItem key={i} dayInfo={day} />;
+				})}
 		</div>
 	);
 }

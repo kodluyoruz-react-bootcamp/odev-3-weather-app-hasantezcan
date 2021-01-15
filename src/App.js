@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { WheatherProvider } from "./contexts/WheatherContex";
+import WithWheather from "./hocs/WithWheather";
 import CurrentWeather from "./components/CurrentWeather";
 import FutureForecast from "./components/FutureForecast";
 import Footer from "./components/Footer";
@@ -8,12 +8,12 @@ import StatusBar from "./components/StatusBar";
 
 function App() {
 	return (
-		<WheatherProvider>
+		<WithWheather>
 			<StatusBar />
 			<CurrentWeather />
 			<FutureForecast />
 			<Footer />
-		</WheatherProvider>
+		</WithWheather>
 	);
 }
 
