@@ -6,6 +6,13 @@
 
 ---
 
+### **Önizleme:** 
+- https://kodluyoruz-odev-3-wheather-app.netlify.app  
+    [![Netlify Status](https://api.netlify.com/api/v1/badges/94ddc484-4db4-477d-88b2-75f269e539fb/deploy-status)](https://app.netlify.com/sites/kodluyoruz-odev-3-wheather-app/deploys)
+
+### **Ekran görüntüsü:**
+![screenshot](2021-01-16-09-45-36.png)
+
 ### Görev:
 - Sizden genel olarak bir hava durumu uygulaması geliştirmenizi bekliyorum. Türkiye'nin tüm illerinin bir haftalık hava raporunu görüntüleyebilmeliyiz.
 
