@@ -1,4 +1,6 @@
 import { useWheather } from "../../contexts/WheatherContex";
+import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function CurrentWeather() {
 	const { todayData } = useWheather();
@@ -13,16 +15,13 @@ function CurrentWeather() {
 		<div id="current" className="wrapper">
 			<nav>
 				<button id="locateBtn">
-					<i className="fa fa-location-arrow" aria-hidden="true"></i>
-				</button>
-				<button id="unitBtn" data-units="f">
-					f
+					<FontAwesomeIcon icon={faLocationArrow} />
 				</button>
 			</nav>
 			<h1 className="location">Denizli</h1>
 			<h2 className="date">{todayData.date}</h2>
 			<div className="weatherIcon">
-				<img className="weatherIcon"  id="current" src={todayData.icon} alt="" />
+				<img className="weatherIcon" id="current" src={todayData.icon} alt="" />
 			</div>
 			{todayData && (
 				<>

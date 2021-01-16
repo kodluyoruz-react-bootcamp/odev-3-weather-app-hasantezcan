@@ -331,7 +331,7 @@ const WithWheather = ({ children }) => {
 
 	function createDate(dt, type) {
 		var day = new Date(dt * 1000);
-		if (type == "long") {
+		if (type === "long") {
 			let options = {
 				weekday: "long",
 				year: "numeric",
@@ -347,39 +347,40 @@ const WithWheather = ({ children }) => {
 	function fetchIconUrl(icon) {
 		return `http://openweathermap.org/img/wn/${icon}@2x.png`;
 	}
-	async function fetchData() {
-		// const { data } = await axios.get(
-		// 	`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
-		// );
-
-		// Create our wheather objects
-		let todayInfo;
-		let featureForcasts;
-
-		if (data) {
-			todayInfo = {
-				date: createDate(data.current.dt, "long"),
-				temp: data.current.temp,
-				description: data.current.weather[0].description,
-				icon: fetchIconUrl(data.current.weather[0].icon),
-			};
-
-			featureForcasts = data.daily.map((day, i) => ({
-				date: createDate(day.dt, "small"),
-				maxTemp: day.temp.max,
-				minTemp: day.temp.min,
-				description: day.weather[0].description,
-				icon: fetchIconUrl(day.weather[0].icon),
-			}));
-		}
-
-		setTodayData(todayInfo);
-		setWeeklyData(featureForcasts);
-	}
 
 	useEffect(() => {
+		async function fetchData() {
+			// const { data } = await axios.get(
+			// 	`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
+			// );
+
+			// Create our wheather objects
+			let todayInfo;
+			let featureForcasts;
+
+			if (data) {
+				todayInfo = {
+					date: createDate(data.current.dt, "long"),
+					temp: data.current.temp,
+					description: data.current.weather[0].description,
+					icon: fetchIconUrl(data.current.weather[0].icon),
+				};
+
+				featureForcasts = data.daily.map((day, i) => ({
+					date: createDate(day.dt, "small"),
+					maxTemp: day.temp.max,
+					minTemp: day.temp.min,
+					description: day.weather[0].description,
+					icon: fetchIconUrl(day.weather[0].icon),
+				}));
+			}
+
+			setTodayData(todayInfo);
+			setWeeklyData(featureForcasts);
+		}
+
 		fetchData();
-	}, [location]);
+	}, [location, data]);
 
 	const values = {
 		todayData,
