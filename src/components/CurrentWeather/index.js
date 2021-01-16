@@ -22,9 +22,7 @@ function CurrentWeather() {
 			<h1 className="location">Denizli</h1>
 			<h2 className="date">{todayData.date}</h2>
 			<div className="weatherIcon">
-				<div className="sunny">
-					<div className="inner"></div>
-				</div>
+				<img className="weatherIcon"  id="current" src={todayData.icon} alt="" />
 			</div>
 			{todayData && (
 				<>

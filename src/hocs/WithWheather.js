@@ -356,6 +356,9 @@ const WithWheather = ({ children }) => {
 		}
 	}
 
+	function fetchIconUrl(icon) {
+		return `http://openweathermap.org/img/wn/${icon}@2x.png`;
+	}
 	async function fetchData() {
 		// const { data } = await axios.get(
 		// 	`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
@@ -371,6 +374,7 @@ const WithWheather = ({ children }) => {
 				date: createDate(data.current.dt, "long"),
 				temp: data.current.temp,
 				description: data.current.weather[0].description,
+				icon: fetchIconUrl(data.current.weather[0].icon),
 			};
 
 			featureForcasts = data.daily.map((day, i) => ({
@@ -378,6 +382,7 @@ const WithWheather = ({ children }) => {
 				maxTemp: day.temp.max,
 				minTemp: day.temp.min,
 				description: day.weather[0].description,
+				icon: fetchIconUrl(day.weather[0].icon),
 			}));
 
 			// console.log("Weekly", weekly);

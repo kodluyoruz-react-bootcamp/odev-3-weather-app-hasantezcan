@@ -3,9 +3,7 @@ function FeatureForcastItem({ dayInfo }) {
 		<div className="container">
 			<h3 className="day">{dayInfo.date}</h3>
 			<div className="weatherIcon">
-				<div className="partlycloudy">
-					<div className="inner"></div>
-				</div>
+				<img id="future" className="weatherIcon" src={dayInfo.icon} alt="" />
 			</div>
 			<p className="conditions">{dayInfo.description}</p>
 			<p className="tempRange">

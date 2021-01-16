@@ -23,7 +23,7 @@ body {
 	letter-spacing: 0.05rem;
 	line-height: 1.5;
 	text-align: center;
-	background-color: #86B9E0;
+	background-color: #86b9e0;
 }
 a {
 	color: #6d8ca0;
@@ -180,7 +180,7 @@ nav {
 	text-transform: uppercase;
 }
 #current .weatherIcon {
-	height: 100px;
+	height: 120px;
 	margin: 10% auto 7%;
 	width: 100px;
 }
@@ -221,10 +221,10 @@ nav {
 #future .weatherIcon {
 	float: right;
 	font-size: 0.5em;
-	height: 50px;
+	/* height: 0px; */
 	margin-left: 10%;
 	margin-top: -5%;
-	width: 50px;
+	width: 80px;
 }
 #future p {
 	text-align: left;
@@ -299,9 +299,9 @@ nav {
 	#future .weatherIcon {
 		font-size: 0.56em;
 		float: none;
-		height: 60px;
+		height: 100px;
 		margin: 10% auto 5%;
-		width: 60px;
+		width: 100px;
 	}
 	footer {
 		font-size: 0.9rem;
@@ -319,6 +319,8 @@ nav {
 	#current .weatherIcon {
 		font-size: 0.82em;
 		margin: 5% auto 2%;
+		width: 150px;
+		height: 150px;
 	}
 	#lastUpdated {
 		padding: 3%;
