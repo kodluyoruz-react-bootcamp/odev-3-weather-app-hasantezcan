@@ -8,8 +8,8 @@ function CurrentWeather() {
 
 	function detectLocation() {
 		navigator.geolocation.getCurrentPosition(function (position) {
-			var latitude = position.coords.latitude;
-			var longitude = position.coords.longitude;
+			// var latitude = position.coords.latitude;
+			// var longitude = position.coords.longitude;
 		});
 		function locationSuccess(position) {
 			var latitude = position.coords.latitude;
@@ -21,8 +21,8 @@ function CurrentWeather() {
 			console.log(location);
 		}
 		function locationError(error) {
-			var code = error.code;
-			var message = error.message;
+			// var code = error.code;
+			// var message = error.message;
 		}
 		navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
 	}
