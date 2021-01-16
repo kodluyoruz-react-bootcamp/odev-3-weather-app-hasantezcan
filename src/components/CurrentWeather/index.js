@@ -3,18 +3,34 @@ import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function CurrentWeather() {
-	const { todayData } = useWheather();
+	const { todayData, setLocation, location } = useWheather();
 	console.log("DAILY DATA in COMPONENTS", todayData);
 
-	// setLocation({
-	// 	lat: 38.7829724,
-	// 	lon: 41.0466272,
-	// });
+	function detectLocation() {
+		navigator.geolocation.getCurrentPosition(function (position) {
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+		});
+		function locationSuccess(position) {
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+			setLocation({
+				lat: latitude,
+				lon: longitude,
+			});
+			console.log(location);
+		}
+		function locationError(error) {
+			var code = error.code;
+			var message = error.message;
+		}
+		navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+	}
 
 	return (
 		<div id="current" className="wrapper">
 			<nav>
-				<button id="locateBtn">
+				<button id="locateBtn" onClick={detectLocation}>
 					<FontAwesomeIcon icon={faLocationArrow} />
 				</button>
 			</nav>
@@ -35,19 +51,3 @@ function CurrentWeather() {
 
 export default CurrentWeather;
 
-// navigator.geolocation.getCurrentPosition(function (position) {
-// 	var latitude = position.coords.latitude;
-// 	var longitude = position.coords.longitude;
-// });
-
-// function locationSuccess(position) {
-// 	var latitude = position.coords.latitude;
-// 	var longitude = position.coords.longitude;
-// }
-
-// function locationError(error) {
-// 	var code = error.code;
-// 	var message = error.message;
-// }
-
-// navigator.geolocation.getCurrentPosition(locationSuccess, locationError);

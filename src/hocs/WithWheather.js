@@ -385,6 +385,7 @@ const WithWheather = ({ children }) => {
 	const values = {
 		todayData,
 		weeklyData,
+		location,
 		setLocation,
 	};
 
