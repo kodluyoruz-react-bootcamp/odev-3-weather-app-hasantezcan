@@ -1,73 +1,99 @@
 import { useEffect, useState } from "react";
 import { WheatherProvider } from "../contexts/WheatherContex";
-// import WheatherData from "../../data.json"
 
 // import axios from "axios";
-
 // const ENDPOINT = `https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,alerts&units=metric&appid=${process.env.REACT_APP_API_KEY}&`;
 
 const WithWheather = ({ children }) => {
-	const images = {
-		sunny: "sunny",
-	};
-	console.log("ebennnnnnnnnnn", images["sunny"]);
-	const day = new Date(1610701200);
-	day.getDay();
 	const [data] = useState({
 		lat: 38.783,
 		lon: 41.0466,
 		timezone: "Europe/Istanbul",
 		timezone_offset: 10800,
 		current: {
-			dt: 1610733742,
-			sunrise: 1610685149,
-			sunset: 1610720251,
-			temp: 274.58,
-			feels_like: 270.28,
-			pressure: 1016,
-			humidity: 88,
-			dew_point: 272.85,
-			uvi: 0,
-			clouds: 100,
-			visibility: 93,
-			wind_speed: 3.23,
-			wind_deg: 212,
+			dt: 1610775414,
+			sunrise: 1610771527,
+			sunset: 1610806715,
+			temp: 4.06,
+			feels_like: -0.48,
+			pressure: 1015,
+			humidity: 87,
+			dew_point: 2.09,
+			uvi: 0.7,
+			clouds: 90,
+			visibility: 7000,
+			wind_speed: 4.12,
+			wind_deg: 190,
 			weather: [
 				{
-					id: 600,
-					main: "Snow",
-					description: "light snow",
-					icon: "13n",
+					id: 804,
+					main: "Clouds",
+					description: "overcast clouds",
+					icon: "04d",
 				},
 			],
-			snow: {
-				"1h": 0.2686,
-			},
 		},
 		daily: [
 			{
-				dt: 1610701200,
-				sunrise: 1610685149,
-				sunset: 1610720251,
+				dt: 1610787600,
+				sunrise: 1610771527,
+				sunset: 1610806715,
 				temp: {
-					day: 274.27,
-					min: 273.29,
-					max: 274.67,
-					night: 274.14,
-					eve: 274.03,
-					morn: 274.06,
+					day: 2,
+					min: 0.95,
+					max: 4.06,
+					night: 1.76,
+					eve: 1.88,
+					morn: 1.93,
 				},
 				feels_like: {
-					day: 270.52,
-					night: 269.74,
-					eve: 269.07,
-					morn: 270,
+					day: -2.18,
+					night: -1.83,
+					eve: -1.79,
+					morn: -3.13,
 				},
-				pressure: 1015,
+				pressure: 1016,
+				humidity: 86,
+				dew_point: -0.08,
+				wind_speed: 3.12,
+				wind_deg: 182,
+				weather: [
+					{
+						id: 616,
+						main: "Snow",
+						description: "rain and snow",
+						icon: "13d",
+					},
+				],
+				clouds: 100,
+				pop: 1,
+				rain: 0.56,
+				snow: 27.47,
+				uvi: 1.55,
+			},
+			{
+				dt: 1610874000,
+				sunrise: 1610857903,
+				sunset: 1610893180,
+				temp: {
+					day: 1.13,
+					min: -0.04,
+					max: 1.78,
+					night: 0.6,
+					eve: 0.71,
+					morn: 0.36,
+				},
+				feels_like: {
+					day: -3.3,
+					night: -4.23,
+					eve: -4.4,
+					morn: -3.59,
+				},
+				pressure: 1011,
 				humidity: 90,
-				dew_point: 271.82,
-				wind_speed: 2.45,
-				wind_deg: 212,
+				dew_point: -1.21,
+				wind_speed: 3.42,
+				wind_deg: 159,
 				weather: [
 					{
 						id: 602,
@@ -76,34 +102,34 @@ const WithWheather = ({ children }) => {
 						icon: "13d",
 					},
 				],
-				clouds: 91,
+				clouds: 100,
 				pop: 1,
-				snow: 34.91,
-				uvi: 2.47,
+				snow: 54.17,
+				uvi: 2.33,
 			},
 			{
-				dt: 1610787600,
-				sunrise: 1610771527,
-				sunset: 1610806715,
+				dt: 1610960400,
+				sunrise: 1610944277,
+				sunset: 1610979646,
 				temp: {
-					day: 275.12,
-					min: 274.21,
-					max: 275.23,
-					night: 275.05,
-					eve: 275.04,
-					morn: 275.04,
+					day: -0.56,
+					min: -6.1,
+					max: 0.9,
+					night: -6.1,
+					eve: -3.69,
+					morn: -0.18,
 				},
 				feels_like: {
-					day: 270.73,
-					night: 271.41,
-					eve: 271.21,
-					morn: 270.27,
+					day: -5.83,
+					night: -10.73,
+					eve: -7.82,
+					morn: -5.08,
 				},
-				pressure: 1016,
-				humidity: 86,
-				dew_point: 272.85,
-				wind_speed: 3.41,
-				wind_deg: 183,
+				pressure: 1014,
+				humidity: 95,
+				dew_point: -3.23,
+				wind_speed: 4.44,
+				wind_deg: 211,
 				weather: [
 					{
 						id: 601,
@@ -114,79 +140,7 @@ const WithWheather = ({ children }) => {
 				],
 				clouds: 100,
 				pop: 1,
-				snow: 34.43,
-				uvi: 1.55,
-			},
-			{
-				dt: 1610874000,
-				sunrise: 1610857903,
-				sunset: 1610893180,
-				temp: {
-					day: 274.42,
-					min: 273.15,
-					max: 275.03,
-					night: 273.77,
-					eve: 274.05,
-					morn: 273.7,
-				},
-				feels_like: {
-					day: 270.03,
-					night: 269.9,
-					eve: 269.12,
-					morn: 269.81,
-				},
-				pressure: 1011,
-				humidity: 89,
-				dew_point: 272.06,
-				wind_speed: 3.36,
-				wind_deg: 160,
-				weather: [
-					{
-						id: 602,
-						main: "Snow",
-						description: "heavy snow",
-						icon: "13d",
-					},
-				],
-				clouds: 100,
-				pop: 1,
-				snow: 52.9,
-				uvi: 2.33,
-			},
-			{
-				dt: 1610960400,
-				sunrise: 1610944277,
-				sunset: 1610979646,
-				temp: {
-					day: 272.85,
-					min: 268.17,
-					max: 274.54,
-					night: 268.17,
-					eve: 269.75,
-					morn: 272.75,
-				},
-				feels_like: {
-					day: 267.36,
-					night: 263.55,
-					eve: 265.45,
-					morn: 268.08,
-				},
-				pressure: 1014,
-				humidity: 95,
-				dew_point: 270.11,
-				wind_speed: 4.8,
-				wind_deg: 209,
-				weather: [
-					{
-						id: 602,
-						main: "Snow",
-						description: "heavy snow",
-						icon: "13d",
-					},
-				],
-				clouds: 100,
-				pop: 1,
-				snow: 17.88,
+				snow: 17.63,
 				uvi: 2.37,
 			},
 			{
@@ -194,24 +148,24 @@ const WithWheather = ({ children }) => {
 				sunrise: 1611030649,
 				sunset: 1611066112,
 				temp: {
-					day: 272.02,
-					min: 267.86,
-					max: 272.02,
-					night: 268.08,
-					eve: 269.52,
-					morn: 270.99,
+					day: -1.35,
+					min: -5.52,
+					max: -0.6,
+					night: -5.22,
+					eve: -3.1,
+					morn: -2.73,
 				},
 				feels_like: {
-					day: 268.93,
-					night: 264.34,
-					eve: 265.21,
-					morn: 267.64,
+					day: -4.83,
+					night: -9.19,
+					eve: -6.87,
+					morn: -6.29,
 				},
 				pressure: 1012,
 				humidity: 95,
-				dew_point: 269.4,
-				wind_speed: 1.22,
-				wind_deg: 192,
+				dew_point: -3.98,
+				wind_speed: 1.74,
+				wind_deg: 157,
 				weather: [
 					{
 						id: 602,
@@ -222,7 +176,7 @@ const WithWheather = ({ children }) => {
 				],
 				clouds: 100,
 				pop: 1,
-				snow: 60.82,
+				snow: 58.28,
 				uvi: 1.69,
 			},
 			{
@@ -230,24 +184,24 @@ const WithWheather = ({ children }) => {
 				sunrise: 1611117019,
 				sunset: 1611152578,
 				temp: {
-					day: 266.22,
-					min: 258.91,
-					max: 266.22,
-					night: 258.91,
-					eve: 260.35,
-					morn: 263.31,
+					day: -6.62,
+					min: -11.08,
+					max: -6.62,
+					night: -11.08,
+					eve: -10.43,
+					morn: -10.27,
 				},
 				feels_like: {
-					day: 261.58,
-					night: 253.86,
-					eve: 255.35,
-					morn: 259.2,
+					day: -11.04,
+					night: -15.98,
+					eve: -15.09,
+					morn: -14.49,
 				},
 				pressure: 1024,
-				humidity: 91,
-				dew_point: 262.48,
-				wind_speed: 2.47,
-				wind_deg: 38,
+				humidity: 92,
+				dew_point: -10.17,
+				wind_speed: 2.21,
+				wind_deg: 50,
 				weather: [
 					{
 						id: 600,
@@ -257,8 +211,8 @@ const WithWheather = ({ children }) => {
 					},
 				],
 				clouds: 99,
-				pop: 0.59,
-				snow: 1.98,
+				pop: 0.39,
+				snow: 2.6,
 				uvi: 2.47,
 			},
 			{
@@ -266,23 +220,23 @@ const WithWheather = ({ children }) => {
 				sunrise: 1611203387,
 				sunset: 1611239046,
 				temp: {
-					day: 261.97,
-					min: 256.41,
-					max: 261.99,
-					night: 257.16,
-					eve: 257.7,
-					morn: 256.41,
+					day: -9.96,
+					min: -15.33,
+					max: -9.89,
+					night: -15.18,
+					eve: -14.25,
+					morn: -15.33,
 				},
 				feels_like: {
-					day: 256.59,
-					night: 252.03,
-					eve: 252.59,
-					morn: 251.35,
+					day: -15.24,
+					night: -20.56,
+					eve: -19.56,
+					morn: -20.65,
 				},
-				pressure: 1036,
-				humidity: 83,
-				dew_point: 255.04,
-				wind_speed: 2.99,
+				pressure: 1033,
+				humidity: 82,
+				dew_point: -17.24,
+				wind_speed: 2.94,
 				wind_deg: 48,
 				weather: [
 					{
@@ -301,24 +255,24 @@ const WithWheather = ({ children }) => {
 				sunrise: 1611289753,
 				sunset: 1611325513,
 				temp: {
-					day: 262.49,
-					min: 256.25,
-					max: 263.24,
-					night: 259.75,
-					eve: 259.46,
-					morn: 256.25,
+					day: -11.44,
+					min: -17.09,
+					max: -10.73,
+					night: -13.89,
+					eve: -14.55,
+					morn: -17.09,
 				},
 				feels_like: {
-					day: 257.33,
-					night: 254.7,
-					eve: 254.4,
-					morn: 250.73,
+					day: -16.98,
+					night: -18.93,
+					eve: -19.74,
+					morn: -22.82,
 				},
-				pressure: 1037,
-				humidity: 81,
-				dew_point: 254.95,
-				wind_speed: 2.7,
-				wind_deg: 76,
+				pressure: 1039,
+				humidity: 82,
+				dew_point: -18.61,
+				wind_speed: 3.18,
+				wind_deg: 71,
 				weather: [
 					{
 						id: 800,
@@ -331,15 +285,49 @@ const WithWheather = ({ children }) => {
 				pop: 0,
 				uvi: 3,
 			},
+			{
+				dt: 1611392400,
+				sunrise: 1611376117,
+				sunset: 1611411981,
+				temp: {
+					day: -7.62,
+					min: -14.51,
+					max: -7,
+					night: -11.84,
+					eve: -11.76,
+					morn: -13.8,
+				},
+				feels_like: {
+					day: -12.25,
+					night: -16.57,
+					eve: -16.48,
+					morn: -19.04,
+				},
+				pressure: 1031,
+				humidity: 83,
+				dew_point: -15.17,
+				wind_speed: 2.25,
+				wind_deg: 80,
+				weather: [
+					{
+						id: 804,
+						main: "Clouds",
+						description: "overcast clouds",
+						icon: "04d",
+					},
+				],
+				clouds: 98,
+				pop: 0,
+				uvi: 3,
+			},
 		],
 	});
+	const [todayData, setTodayData] = useState({});
+	const [weeklyData, setWeeklyData] = useState({});
 	const [location, setLocation] = useState({
 		lat: 38.7829724,
 		lon: 41.0466272,
 	});
-
-	const [todayData, setTodayData] = useState({});
-	const [weeklyData, setWeeklyData] = useState({});
 
 	function createDate(dt, type) {
 		var day = new Date(dt * 1000);
@@ -364,8 +352,7 @@ const WithWheather = ({ children }) => {
 		// 	`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
 		// );
 
-		// console.log(data);
-
+		// Create our wheather objects
 		let todayInfo;
 		let featureForcasts;
 
@@ -384,16 +371,12 @@ const WithWheather = ({ children }) => {
 				description: day.weather[0].description,
 				icon: fetchIconUrl(day.weather[0].icon),
 			}));
-
-			// console.log("Weekly", weekly);
-			// console.log("Today", today);
 		}
 
 		setTodayData(todayInfo);
 		setWeeklyData(featureForcasts);
 	}
 
-	// asyn await kaldirdik
 	useEffect(() => {
 		fetchData();
 	}, [location]);
@@ -404,8 +387,8 @@ const WithWheather = ({ children }) => {
 		setLocation,
 	};
 
-	console.log("TODAY DATA IN HOCS", todayData);
-	console.log("WEEKLYDATA DATA IN HOCS", weeklyData);
+	// console.log("TODAY DATA IN HOCS", todayData);
+	// console.log("WEEKLYDATA DATA IN HOCS", weeklyData);
 
 	return <WheatherProvider value={values}>{children}</WheatherProvider>;
 };
