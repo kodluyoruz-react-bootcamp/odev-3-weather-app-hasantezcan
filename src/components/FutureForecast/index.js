@@ -8,7 +8,7 @@ function FutureForecast() {
 	const { weeklyData } = useWheather();
 
 	useEffect(() => {
-		if (weeklyData == undefined) {
+		if (weeklyData === undefined) {
 			setLoading(true);
 			console.log("BULAMADI");
 		} else {
@@ -25,8 +25,8 @@ function FutureForecast() {
 
 			{!loading &&
 				weeklyData.map((day, i) => {
-					<p>{day}</p>
-					// <FeatureForcastItem key={i} dayInfo={day} />;
+					// <p>{day}</p>
+					return <FeatureForcastItem key={i} dayInfo={day} />;
 				})}
 		</div>
 	);

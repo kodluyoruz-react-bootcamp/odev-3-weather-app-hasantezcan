@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-import { WheatherProvider, useWheather } from "../contexts/WheatherContex";
+import { useEffect, useState } from "react";
+import { WheatherProvider } from "../contexts/WheatherContex";
 // import WheatherData from "../../data.json"
 
 // import axios from "axios";
@@ -7,7 +7,13 @@ import { WheatherProvider, useWheather } from "../contexts/WheatherContex";
 // const ENDPOINT = `https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,alerts&units=metric&appid=${process.env.REACT_APP_API_KEY}&`;
 
 const WithWheather = ({ children }) => {
-	const [data, setData] = useState({
+	const images = {
+		sunny: "sunny",
+	};
+	console.log("ebennnnnnnnnnn", images["sunny"]);
+	const day = new Date(1610701200);
+	day.getDay();
+	const [data] = useState({
 		lat: 38.783,
 		lon: 41.0466,
 		timezone: "Europe/Istanbul",
@@ -335,6 +341,21 @@ const WithWheather = ({ children }) => {
 	const [todayData, setTodayData] = useState({});
 	const [weeklyData, setWeeklyData] = useState({});
 
+	function createDate(dt, type) {
+		var day = new Date(dt * 1000);
+		if (type == "long") {
+			let options = {
+				weekday: "long",
+				year: "numeric",
+				month: "long",
+				day: "numeric",
+			};
+			return day.toLocaleString("en-us", options);
+		} else {
+			return day.toLocaleString("en-us", { weekday: "long" });
+		}
+	}
+
 	async function fetchData() {
 		// const { data } = await axios.get(
 		// 	`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
@@ -347,12 +368,13 @@ const WithWheather = ({ children }) => {
 
 		if (data) {
 			todayInfo = {
+				date: createDate(data.current.dt, "long"),
 				temp: data.current.temp,
 				description: data.current.weather[0].description,
 			};
 
 			featureForcasts = data.daily.map((day, i) => ({
-				date: day.dt,
+				date: createDate(day.dt, "small"),
 				maxTemp: day.temp.max,
 				minTemp: day.temp.min,
 				description: day.weather[0].description,
@@ -366,8 +388,9 @@ const WithWheather = ({ children }) => {
 		setWeeklyData(featureForcasts);
 	}
 
-	useEffect(async () => {
-		await fetchData();
+	// asyn await kaldirdik
+	useEffect(() => {
+		fetchData();
 	}, [location]);
 
 	const values = {

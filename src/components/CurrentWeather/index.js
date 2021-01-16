@@ -1,13 +1,14 @@
 import { useWheather } from "../../contexts/WheatherContex";
 
 function CurrentWeather() {
-	const { dailyData } = useWheather();
-	console.log("DAILY DATA in COMPONENTS", dailyData);
+	const { todayData } = useWheather();
+	console.log("DAILY DATA in COMPONENTS", todayData);
 
 	// setLocation({
 	// 	lat: 38.7829724,
 	// 	lon: 41.0466272,
 	// });
+
 	return (
 		<div id="current" className="wrapper">
 			<nav>
@@ -19,14 +20,18 @@ function CurrentWeather() {
 				</button>
 			</nav>
 			<h1 className="location">Denizli</h1>
-			<h2 className="date">Sunday, January 1, 2017</h2>
+			<h2 className="date">{todayData.date}</h2>
 			<div className="weatherIcon">
 				<div className="sunny">
 					<div className="inner"></div>
 				</div>
 			</div>
-			{/* <p className="temp">{dailyData.temp}</p>
-			<p className="conditions">{dailyData.description}</p> */}
+			{todayData && (
+				<>
+					<p className="temp">{todayData.temp}</p>
+					<p className="conditions">{todayData.description}</p>
+				</>
+			)}
 		</div>
 	);
 }
