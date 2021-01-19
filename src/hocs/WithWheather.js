@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { WheatherProvider } from "../contexts/WheatherContex";
 
 import axios from "axios";
+
 const ENDPOINT = `https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,alerts&units=metric&appid=${process.env.REACT_APP_API_KEY}&`;
+const reverseGeoCodetoCityAPI =
+	"https://api.bigdatacloud.net/data/reverse-geocode-client?";
 
 const WithWheather = ({ children }) => {
 	const [todayData, setTodayData] = useState({});
@@ -31,38 +34,50 @@ const WithWheather = ({ children }) => {
 		return `http://openweathermap.org/img/wn/${icon}@2x.png`;
 	}
 
-	useEffect(() => {
-		async function fetchData() {
-			const { data } = await axios.get(
-				`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
-			);
+	async function fetchLocation() {
+		return axios.get(
+			`${reverseGeoCodetoCityAPI}latitude=${location.lat}&longitude=${location.lon}`
+		);
+	}
 
-			// Create our wheather objects
-			let todayInfo;
-			let featureForcasts;
+	async function fetchData() {
+		return axios.get(`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`);
+	}
 
-			if (data) {
-				todayInfo = {
-					date: createDate(data.current.dt, "long"),
-					temp: data.current.temp,
-					description: data.current.weather[0].description,
-					icon: fetchIconUrl(data.current.weather[0].icon),
-				};
+	function createData(data, reverseGeo) {
+		// Create our wheather objects
+		let todayInfo;
+		let featureForcasts;
 
-				featureForcasts = data.daily.map((day, i) => ({
-					date: createDate(day.dt, "small"),
-					maxTemp: day.temp.max,
-					minTemp: day.temp.min,
-					description: day.weather[0].description,
-					icon: fetchIconUrl(day.weather[0].icon),
-				}));
-			}
+		// console.log("reverseGeo", reverseGeo);
+		if (data && reverseGeo) {
+			todayInfo = {
+				date: createDate(data.current.dt, "long"),
+				temp: data.current.temp,
+				description: data.current.weather[0].description,
+				icon: fetchIconUrl(data.current.weather[0].icon),
+				cityName: reverseGeo.principalSubdivision,
+				provinceName: reverseGeo.locality,
+			};
 
-			setTodayData(todayInfo);
-			setWeeklyData(featureForcasts);
+			featureForcasts = data.daily.map((day, i) => ({
+				date: createDate(day.dt, "small"),
+				maxTemp: day.temp.max,
+				minTemp: day.temp.min,
+				description: day.weather[0].description,
+				icon: fetchIconUrl(day.weather[0].icon),
+			}));
 		}
 
-		fetchData();
+		setTodayData(todayInfo);
+		setWeeklyData(featureForcasts);
+	}
+
+	useEffect(async () => {
+		const { data: reverseGeo } = await fetchLocation();
+		const { data } = await fetchData();
+
+		await createData(data, reverseGeo);
 	}, [location]);
 
 	const values = {
