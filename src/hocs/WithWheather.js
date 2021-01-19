@@ -1,327 +1,10 @@
 import { useEffect, useState } from "react";
 import { WheatherProvider } from "../contexts/WheatherContex";
 
-// import axios from "axios";
-// const ENDPOINT = `https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,alerts&units=metric&appid=${process.env.REACT_APP_API_KEY}&`;
+import axios from "axios";
+const ENDPOINT = `https://api.openweathermap.org/data/2.5/onecall?exclude=hourly,minutely,alerts&units=metric&appid=${process.env.REACT_APP_API_KEY}&`;
 
 const WithWheather = ({ children }) => {
-	const [data] = useState({
-		lat: 38.783,
-		lon: 41.0466,
-		timezone: "Europe/Istanbul",
-		timezone_offset: 10800,
-		current: {
-			dt: 1610775414,
-			sunrise: 1610771527,
-			sunset: 1610806715,
-			temp: 4.06,
-			feels_like: -0.48,
-			pressure: 1015,
-			humidity: 87,
-			dew_point: 2.09,
-			uvi: 0.7,
-			clouds: 90,
-			visibility: 7000,
-			wind_speed: 4.12,
-			wind_deg: 190,
-			weather: [
-				{
-					id: 804,
-					main: "Clouds",
-					description: "overcast clouds",
-					icon: "04d",
-				},
-			],
-		},
-		daily: [
-			{
-				dt: 1610787600,
-				sunrise: 1610771527,
-				sunset: 1610806715,
-				temp: {
-					day: 2,
-					min: 0.95,
-					max: 4.06,
-					night: 1.76,
-					eve: 1.88,
-					morn: 1.93,
-				},
-				feels_like: {
-					day: -2.18,
-					night: -1.83,
-					eve: -1.79,
-					morn: -3.13,
-				},
-				pressure: 1016,
-				humidity: 86,
-				dew_point: -0.08,
-				wind_speed: 3.12,
-				wind_deg: 182,
-				weather: [
-					{
-						id: 616,
-						main: "Snow",
-						description: "rain and snow",
-						icon: "13d",
-					},
-				],
-				clouds: 100,
-				pop: 1,
-				rain: 0.56,
-				snow: 27.47,
-				uvi: 1.55,
-			},
-			{
-				dt: 1610874000,
-				sunrise: 1610857903,
-				sunset: 1610893180,
-				temp: {
-					day: 1.13,
-					min: -0.04,
-					max: 1.78,
-					night: 0.6,
-					eve: 0.71,
-					morn: 0.36,
-				},
-				feels_like: {
-					day: -3.3,
-					night: -4.23,
-					eve: -4.4,
-					morn: -3.59,
-				},
-				pressure: 1011,
-				humidity: 90,
-				dew_point: -1.21,
-				wind_speed: 3.42,
-				wind_deg: 159,
-				weather: [
-					{
-						id: 602,
-						main: "Snow",
-						description: "heavy snow",
-						icon: "13d",
-					},
-				],
-				clouds: 100,
-				pop: 1,
-				snow: 54.17,
-				uvi: 2.33,
-			},
-			{
-				dt: 1610960400,
-				sunrise: 1610944277,
-				sunset: 1610979646,
-				temp: {
-					day: -0.56,
-					min: -6.1,
-					max: 0.9,
-					night: -6.1,
-					eve: -3.69,
-					morn: -0.18,
-				},
-				feels_like: {
-					day: -5.83,
-					night: -10.73,
-					eve: -7.82,
-					morn: -5.08,
-				},
-				pressure: 1014,
-				humidity: 95,
-				dew_point: -3.23,
-				wind_speed: 4.44,
-				wind_deg: 211,
-				weather: [
-					{
-						id: 601,
-						main: "Snow",
-						description: "snow",
-						icon: "13d",
-					},
-				],
-				clouds: 100,
-				pop: 1,
-				snow: 17.63,
-				uvi: 2.37,
-			},
-			{
-				dt: 1611046800,
-				sunrise: 1611030649,
-				sunset: 1611066112,
-				temp: {
-					day: -1.35,
-					min: -5.52,
-					max: -0.6,
-					night: -5.22,
-					eve: -3.1,
-					morn: -2.73,
-				},
-				feels_like: {
-					day: -4.83,
-					night: -9.19,
-					eve: -6.87,
-					morn: -6.29,
-				},
-				pressure: 1012,
-				humidity: 95,
-				dew_point: -3.98,
-				wind_speed: 1.74,
-				wind_deg: 157,
-				weather: [
-					{
-						id: 602,
-						main: "Snow",
-						description: "heavy snow",
-						icon: "13d",
-					},
-				],
-				clouds: 100,
-				pop: 1,
-				snow: 58.28,
-				uvi: 1.69,
-			},
-			{
-				dt: 1611133200,
-				sunrise: 1611117019,
-				sunset: 1611152578,
-				temp: {
-					day: -6.62,
-					min: -11.08,
-					max: -6.62,
-					night: -11.08,
-					eve: -10.43,
-					morn: -10.27,
-				},
-				feels_like: {
-					day: -11.04,
-					night: -15.98,
-					eve: -15.09,
-					morn: -14.49,
-				},
-				pressure: 1024,
-				humidity: 92,
-				dew_point: -10.17,
-				wind_speed: 2.21,
-				wind_deg: 50,
-				weather: [
-					{
-						id: 600,
-						main: "Snow",
-						description: "light snow",
-						icon: "13d",
-					},
-				],
-				clouds: 99,
-				pop: 0.39,
-				snow: 2.6,
-				uvi: 2.47,
-			},
-			{
-				dt: 1611219600,
-				sunrise: 1611203387,
-				sunset: 1611239046,
-				temp: {
-					day: -9.96,
-					min: -15.33,
-					max: -9.89,
-					night: -15.18,
-					eve: -14.25,
-					morn: -15.33,
-				},
-				feels_like: {
-					day: -15.24,
-					night: -20.56,
-					eve: -19.56,
-					morn: -20.65,
-				},
-				pressure: 1033,
-				humidity: 82,
-				dew_point: -17.24,
-				wind_speed: 2.94,
-				wind_deg: 48,
-				weather: [
-					{
-						id: 800,
-						main: "Clear",
-						description: "clear sky",
-						icon: "01d",
-					},
-				],
-				clouds: 0,
-				pop: 0,
-				uvi: 3,
-			},
-			{
-				dt: 1611306000,
-				sunrise: 1611289753,
-				sunset: 1611325513,
-				temp: {
-					day: -11.44,
-					min: -17.09,
-					max: -10.73,
-					night: -13.89,
-					eve: -14.55,
-					morn: -17.09,
-				},
-				feels_like: {
-					day: -16.98,
-					night: -18.93,
-					eve: -19.74,
-					morn: -22.82,
-				},
-				pressure: 1039,
-				humidity: 82,
-				dew_point: -18.61,
-				wind_speed: 3.18,
-				wind_deg: 71,
-				weather: [
-					{
-						id: 800,
-						main: "Clear",
-						description: "clear sky",
-						icon: "01d",
-					},
-				],
-				clouds: 0,
-				pop: 0,
-				uvi: 3,
-			},
-			{
-				dt: 1611392400,
-				sunrise: 1611376117,
-				sunset: 1611411981,
-				temp: {
-					day: -7.62,
-					min: -14.51,
-					max: -7,
-					night: -11.84,
-					eve: -11.76,
-					morn: -13.8,
-				},
-				feels_like: {
-					day: -12.25,
-					night: -16.57,
-					eve: -16.48,
-					morn: -19.04,
-				},
-				pressure: 1031,
-				humidity: 83,
-				dew_point: -15.17,
-				wind_speed: 2.25,
-				wind_deg: 80,
-				weather: [
-					{
-						id: 804,
-						main: "Clouds",
-						description: "overcast clouds",
-						icon: "04d",
-					},
-				],
-				clouds: 98,
-				pop: 0,
-				uvi: 3,
-			},
-		],
-	});
 	const [todayData, setTodayData] = useState({});
 	const [weeklyData, setWeeklyData] = useState({});
 	const [location, setLocation] = useState({
@@ -350,9 +33,9 @@ const WithWheather = ({ children }) => {
 
 	useEffect(() => {
 		async function fetchData() {
-			// const { data } = await axios.get(
-			// 	`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
-			// );
+			const { data } = await axios.get(
+				`${ENDPOINT}lat=${location.lat}&lon=${location.lon}`
+			);
 
 			// Create our wheather objects
 			let todayInfo;
@@ -380,7 +63,7 @@ const WithWheather = ({ children }) => {
 		}
 
 		fetchData();
-	}, [location, data]);
+	}, [location]);
 
 	const values = {
 		todayData,
@@ -389,8 +72,8 @@ const WithWheather = ({ children }) => {
 		setLocation,
 	};
 
-	// console.log("TODAY DATA IN HOCS", todayData);
-	// console.log("WEEKLYDATA DATA IN HOCS", weeklyData);
+	console.log("TODAY DATA IN HOCS", todayData);
+	console.log("WEEKLYDATA DATA IN HOCS", weeklyData);
 
 	return <WheatherProvider value={values}>{children}</WheatherProvider>;
 };
